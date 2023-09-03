@@ -12,6 +12,9 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { DataSource } from 'typeorm'
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
 import { addTransactionalDataSource } from 'typeorm-transactional'
+import { MenuModule } from './menu/menu.module'
+import { RoleModule } from './role/role.module'
+import { RoleMenuModule } from './role-menu/role-menu.module'
 
 @Module({
   imports: [
@@ -34,7 +37,10 @@ import { addTransactionalDataSource } from 'typeorm-transactional'
         }
         return addTransactionalDataSource(new DataSource(options))
       }
-    })
+    }),
+    MenuModule,
+    RoleModule,
+    RoleMenuModule
   ],
   controllers: [AppController],
   providers: [

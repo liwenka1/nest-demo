@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { UserService } from './user.service'
 import { ApiTags, ApiOperation } from '@nestjs/swagger'
 import { User } from './entities/user.entity'
+import { UserDTO } from './dto/user.dto'
 @ApiTags('用户管理')
 @Controller('user')
 export class UserController {
@@ -37,5 +38,18 @@ export class UserController {
   @Delete(':id')
   delete(@Param('id') id: number) {
     return this.userService.delete(id)
+  }
+
+  @ApiOperation({
+    summary: '登录'
+  })
+  @Post('/login')
+  async login(@Body() userDTO: UserDTO) {
+    const { username, password } = userDTO
+    if (!username || !password) {
+      return { code: 400, message: '参数错误' }
+    }
+    const userData = await this.userService.login(userDTO)
+    return { code: 200, message: '登录成功', data: userData }
   }
 }
