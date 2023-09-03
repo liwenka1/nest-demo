@@ -22,7 +22,8 @@ async function bootstrap() {
 
   // 日志
   app.use(logger)
-
+  // 允许跨域访问的配置
+  app.enableCors()
   // 文档支持
   generateDocmment(app)
 

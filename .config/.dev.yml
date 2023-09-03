@@ -1,6 +1,6 @@
 HTTP:
   host: 'localhost'
-  port: 9999
+  port: 9090
   # mysql
 MYSQL_CONFIG:
   type: mysql # 数据库链接类型

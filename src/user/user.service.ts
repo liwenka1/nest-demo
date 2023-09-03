@@ -82,6 +82,6 @@ export class UserService {
       const menu = await this.menuRepositroy.findOne({ where: { id: id } })
       menus.push(menu)
     }
-    return { ...userInfo, menus: menus }
+    return { ...userInfo, menus: menus, token: '1234' }
   }
 }
